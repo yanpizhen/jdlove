@@ -1,0 +1,92 @@
+<style>
+  .tab-bars {
+    display: flex;
+    justify-content: center;
+    border-color: #b2b2b2;
+    background-color: #f8f8f8;
+    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
+    color: #444;
+    position: fixed;
+    bottom: 0;
+    z-index: 5;
+    width: 100%;
+    height: 49px;
+    border-style: solid;
+    border-top-width: 1px;
+    background-size: 0;
+  }
+
+  .tab-bars .tab-item {
+    float: left;
+    width: 25%;
+    margin: 0;
+    padding: 5px 0 0px;
+    text-align: center;
+    color: #9a9a9a;
+    font-size: 12px;
+  }
+
+  .tab-bars .active {
+    color:#000;
+  }
+
+  .tab-bars .tab-item:active {
+    color:#000;
+  }
+
+  .tab-bars .tab-item span {
+    display: block;
+    font-size: 0.8em;
+  }
+
+  .tab-bars .tab-item .icon {
+    display: block;
+    margin: 0 auto;
+    height: 24px;
+    width: auto;
+    font-size:1.7em;
+  }
+
+  .tab-bars .tab-item .first:before {
+    content:url('/assets/wap/details/icons_house_facilities.png');
+  }
+
+  .tab-bars .tab-item .second:before {
+    content:url('/assets/wap/details/icons_house_key.png');
+  }
+
+  .tab-bars .tab-item .third:before {
+    content:url('/assets/wap/details/icons_house_life.png');
+  }
+
+  .tab-bars .tab-item .fourth:before {
+    content:url('/assets/wap/details/icons_house_pool.png');
+  }
+
+
+</style>
+<div class="tab-bars">
+  <a class="tab-item" data-pjax="/" href="/">
+    <i class="icon first"></i>
+    <span>精品推荐</span>
+  </a>
+  <a class="tab-item" data-pjax="/custom" href="/custom">
+    <i class="icon second"></i>
+    <span>私人定制</span>
+  </a>
+  <a class="tab-item" data-pjax href="#">
+    <i class="icon third"></i>
+    <span>游问有答</span>
+  </a>
+  <a class="tab-item" data-pjax href="#">
+    <i class="icon fourth"></i>
+    <span>个人中心</span>
+  </a>
+</div>
+
+<script>
+  $('.tab-item').click(function(){
+    $('.tab-item').removeClass('active')
+    $(this).addClass('active')
+  })
+</script>

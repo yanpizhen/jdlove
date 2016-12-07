@@ -1,0 +1,14 @@
+<% cache ['shared/search/destination', Continent.maximum(:updated_at).to_i, OfferDestination.maximum(:updated_at).to_i] do %>
+<% Continent.all_except_others.each do |continent| %>
+  <dl class="navDl clearfix">
+    <dt><%= continent.name %></dt>
+  <% continent.offer_destinations.showable.each do |destination| %>
+    <dd><%= link_to destination.name, 'javascript:;', data: { name: destination.name, name_en: destination.name_en } %></dd>
+  <% end %>
+  </dl>
+<% end %>
+<div class="addOn clearfix">
+  <span>没有您要去的城市？</span>
+  <%= link_to '私人定制', custom_path, class: 'btn btn-lg btn-theme float-right special-search', rel: 'nofollow' %>
+</div>
+<% end %>

@@ -1,0 +1,19 @@
+<p class="histories sr-histories">
+  <span class="history">历史记录</span>
+</p>
+<% cache ['shared/search/destination', EdSearchPanel.maximum(:updated_at).to_i, EdSearchPanel.count], expires_in: seconds_ttl_for_cache_at_midnight do %>
+  <% search_panel = EdSearchPanel.includes(:offer_destination, :country, :continent) %>
+  <% search_panel.group(:continent_id).order('seq_country IS NULL, seq_continent ASC').each do |continent| %>
+    <ul class="addr-area">
+      <li class="continent"><%= continent.continent.name %></li>
+      <% search_panel.where(continent_id: continent.continent_id).group(:country_id).order('seq_country IS NULL, seq_country ASC').pluck(:country_id).each do |country_id| %>
+        <% search_panel.where(country_id: country_id).order('seq_destination IS NULL, seq_destination ASC').each do |city| %>
+          <li>
+            <a class="sr-city-name" href="javascript:;" data-name-en="<%= city.offer_destination.name_en %>" data-name="<%= city.offer_destination.name %>" ><%= city.offer_destination.name %></a>
+            <span class="<%= 'hot' if city.hot %>"></span>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

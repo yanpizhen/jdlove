@@ -1,0 +1,34 @@
+<div class="main-search">
+  <form method="get">
+    <ul class='clearfix'>
+      <li>
+        <input type="text" value="<%= offer_destination.try(:name) %>" placeholder="你想去哪儿" id="js-to-location" class="form-control location dropDownBtn gtm-wap-location" data-target="js-search-location" autocomplete="off" readonly="readonly">
+        <input type="hidden" value="<%= offer_destination.try(:name_en) %>" id="search-box-city">
+      </li>
+      <li id="js-search-location" class="dropDownMenu search-hidden">
+        <%= render partial: 'shared/search/destination' %>
+      <li>
+        <input type="text" value="<%= filter_params[:from] %>" placeholder="入住日期" id="search-box-i" class="form-control checkIn dropDownBtn gtm-wap-checkin" autocomplete="off">
+      </li>
+      <li>
+        <input type="text" value="<%= filter_params[:to] %>" placeholder="退房日期" id="search-box-o" class="form-control checkOut dropDownBtn gtm-wap-checkout" autocomplete="off">
+      </li>
+      <li>
+        <input type="text" value="<%= ZBJ::GUEST_ENTRIES[filter_params[:guest].to_i] %>" placeholder="入住人数" id="js-to-guest" class="form-control location dropDownBtn gtm-wap-guest" data-target="js-search-guest" autocomplete="off" readonly='readonly'>
+      <input type="hidden" id="search-box-g">
+      </li>
+      <li id="js-search-guest" class="search-hidden dropDownMenu">
+        <div class="search-guest-wrap">
+          <%= render partial: 'shared/search/person' %>
+        </div>
+      </li>
+      <li>
+        <input class="btn btn-lg btn-theme gtm-wap-global-search" id="search_submit" name="commit" type="submit" value="搜索" />
+      </li>
+    </ul>
+  </form>
+</div>
+
+<script type="text/javascript">
+  new ZBJ.DatePicker('<%= (Date.current + 3).to_s %>', '#search-box-i', '#search-box-o');ZBJ.SearchBar.init();
+</script>

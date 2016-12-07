@@ -1,0 +1,38 @@
+
+<div class="lg-container">
+  <h1>博客--管理</h1>
+  <h2>Log in</h2>
+
+  <!-- BEGIN LOGIN FORM -->
+  <%= form_tag admin_session_path, html: { method: :post, class: 'login-form' } do %>
+      <h3 class="form-title">登 录</h3>
+      <% login = params[:admin].try(:[], :login) %>
+      <div class="form-group">
+        <div class="input-icon">
+          <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+          <label class="control-label visible-ie8 visible-ie9">Email</label>
+          <i class="fa fa-user"></i>
+          <%= text_field_tag 'admin[email]', login, placeholder: 'Email', class:'form-control placeholder-no-fix', autofocus: login.blank? %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon">
+          <label class="control-label visible-ie8 visible-ie9">密码</label>
+          <i class="fa fa-lock"></i>
+          <%= password_field_tag 'admin[password]', nil, placeholder: 'password', class:'form-control placeholder-no-fix', autofocus: login.present? %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <label class="checkbox">
+          <div class="checker"><%= check_box_tag 'admin[remember_me]', 'yes', false , class:"remember-checkbox" %></div> 7天内自动登录
+        </label>
+        <%= submit_tag '登录', class: 'btn blue pull-right', data: { disable_with: '请稍等...' } %>
+
+      </div>
+  <% end %>
+  <!-- END LOGIN FORM -->
+
+  <%= render "devise/shared/links" %>
+
+  <div id="message"></div>
+</div>

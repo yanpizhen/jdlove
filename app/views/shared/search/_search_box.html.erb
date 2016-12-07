@@ -1,0 +1,27 @@
+<%# 如需使用多个搜索框,则在locals中传入不同的index值 %>
+<% seach_index = local_assigns[:index] ? local_assigns[:index] : '' %>
+<div class="addr-select-module">
+  <div class="search-input">
+    <input type="text" value="<%= country.try(:name) || offer_destination.try(:name) %>" placeholder="房源覆盖729个城市" id="searchCity<%= seach_index %>" class="select-drop-down fir sr-search-city" data-target="location<%= seach_index %>" autocomplete="off" maxlength="16" data-history="<%= country.try(:name) || offer_destination.try(:name) %>" data-name-en="<%= country.try(:name_en) || offer_destination.try(:name_en)%>" >
+
+    <input type="text" value="<%= filter_params[:from] %>" placeholder="入住时间" id="checkIn<%= seach_index %>" class="check-in sr-checkin" autocomplete="off">
+
+    <input type="text" value="<%= filter_params[:to] %>" placeholder="退房时间" id="checkOut<%= seach_index %>" class="check-out sr-checkout" autocomplete="off">
+
+    <input type="text" value="<%= ZBJ::GUEST_ENTRIES[filter_params[:guest].to_i] %>" placeholder="入住人数" id="searchGuest<%= seach_index %>" class="select-drop-down in-count sr-guest" data-target="inNum<%= seach_index %>" autocomplete="off" readonly="readonly" data-value="<%= filter_params[:guest] %>">
+    <input type="submit" value="搜索" class="sub blue-btn sr-global-search <%= params[:map].present? ? 'map-global-search' : '' %>" id="searchSub<%= seach_index %>" placeholder="搜索">
+  </div>
+
+  <div id="location<%= seach_index %>" class="country-name select-menu">
+    <%= render partial: 'shared/search/destination' %>
+  </div>
+
+  <div id="inNum<%= seach_index %>" class="in-num select-menu">
+    <%= render partial: 'shared/search/person' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  new ZBJ.DatePicker('<%= (Date.current + 3).to_s %>', '#checkIn<%= seach_index %>', '#checkOut<%= seach_index %>', null, null, null <%= local_assigns[:index] ? ',' + local_assigns[:index].to_s : '' %>);
+  ZBJ.SearchBar.init(<%= seach_index %>);
+</script>

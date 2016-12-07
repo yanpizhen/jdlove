@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="<%= asset_path 'favicon.ico' %>" type="image/x-icon">
+  <title><%= content_for?(:title) ? "#{yield(:title)} - 住百家" : '住百家 – 国内最大的海外短租公寓、民宿、别墅、家庭旅馆预订网站' %></title>
+  <% if content_for?(:keywords) %>
+      <meta name="keywords" content="<%= yield(:keywords) %>">
+  <% else %>
+      <meta name="keywords" content="住百家,短租公寓,家庭旅馆,海外短租,公寓短租,民宿">
+  <% end %>
+  <% if content_for?(:description) %>
+      <meta name="description" content="<%= yield(:description) %>">
+  <% else %>
+      <meta name="description" content="海外性价比短租公寓，民宿，家庭旅馆，住宿预定网站，多语言服务，靠谱房源！现有百万套真实海外公寓，别墅，树屋，船屋可供预定，【住百家】，租得起的美好时光!">
+  <% end %>
+  <%= stylesheet_link_tag    'application', media: 'all', protocol: :relative %>
+  <%= stylesheet_link_tag    'additional', media: 'all', protocol: :relative %>
+  <%= javascript_include_tag 'application', protocol: :relative %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<h1 style='display: none;'>住百家海外短租公寓</h1>
+
+<div class="mainBody">
+  fdghjk
+  <%= yield %>
+</div>
+</body>
+</html>

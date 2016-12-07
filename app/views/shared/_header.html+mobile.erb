@@ -1,0 +1,24 @@
+<div class="row">
+  <h1 class="logo">
+    <%= link_to "", root_path, title: '返回住百家首页' %>
+  </h1>
+  <div class="float-right userStatus">
+    <% if user_signed_in? %>
+      <a class="avatar"><%= image_tag current_user.avatar_url(:avatarn) %></a>
+      <div class="header-user-menu">
+        <ul class="linkList clearfix">
+          <li><a href="<%= customer_profile_path %>"><span class="u_home"></span>我的住百家</a></li>
+          <li><a href="<%= customer_bookings_path %>"><span class="u_order"></span>我的订单</a></li>
+          <li><a href="<%= customer_favorites_path %>"><span class="u_favorite"></span>我的收藏</a></li>
+          <li><a href="<%= edit_customer_profile_path %>"><span class="u_profile"></span>编辑资料</a></li>
+          <li class="divider"></li>
+          <li><a href="<%= password_customer_profile_path %>"><span class="u_setting"></span>更改密码</a></li>
+          <li><a href="<%= destroy_user_session_path %>"><span class="u_out"></span>退出登录</a></li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to t(:login),   new_user_session_path %>
+      <%= link_to t(:sign_up), new_user_registration_path, class: 'm-sign-up' %>
+    <% end %>
+  </div>
+</div>

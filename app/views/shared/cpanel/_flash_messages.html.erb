@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
+    <% flash.each do |name, msg| %>
+      <!-- 为了避免显示不需要显示的 flash，目前仅限以下类型可以显示 -->
+      <% if ['alert', 'info', 'notice', 'error', 'success', 'warning', 'danger'].include?(name) %>
+        <div class="Metronic-alerts alert alert-<%= name %> fade in">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+          <%= msg %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

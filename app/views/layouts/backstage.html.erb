@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="shortcut icon" href="<%= asset_path('favicon.ico', protocol: :relative) %>" type="image/x-icon">
+    <title><%= content_for?(:title) ? "#{yield(:title)} - 控制台 - 住百家" : '控制台 - 住百家' %></title>
+    <%= stylesheet_link_tag 'backstage', media: 'all', protocol: :relative %>
+    <%= javascript_include_tag 'backstage', protocol: :relative %>
+    <link rel="stylesheet" type="text/css" href="//dn-zhubaijiao.qbox.me/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//dn-zhubaijiao.qbox.me/libs/simple-line-icons/1.0.0/css/simple-line-icons.css">
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body class="<%if controller_name == 'sessions' %>login<% else %>page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo page-sidebar-closed <% end %>">
+    <% if admin_signed_in? %>
+      <div class="clearfix"></div>
+      <div class="page-container">
+        <div class="page-content-wrapper">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="page-footer">
+        <div class="page-footer-inner">
+           2015 © <a href="http://zhubaijia.com" target="_blank">住百家</a>
+        </div>
+        <div class="scroll-to-top" style="display: block;">
+          <i class="icon-arrow-up"></i>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        Metronic.init(); // init metronic core components
+        Layout.init(); // init layout
+        Index.init(); // init index page
+        QuickSidebar.init();
+
+        // 通过cookie取值，是沿用简介模式还是完整模式
+        if($.cookie && $.cookie('sidebar_closed') === '1' ){
+          $('body').addClass('page-sidebar-closed');
+          $('.page-sidebar-menu').addClass('page-sidebar-menu-closed');
+        }else if($.cookie && $.cookie('sidebar_closed') === '0' ){
+          $('body').removeClass('page-sidebar-closed');
+          $('.page-sidebar-menu').removeClass('page-sidebar-menu-closed');
+        };
+        // 当通过浏览器打开cpanel的时候，body关闭page-sidebar-closed属性，保证手机端sidebar正常使用。
+        var isMobile = {
+          Android: function() {
+            return navigator.userAgent.match(/Android/i) ? true : false;
+          },
+          BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+          },
+          iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+          },
+          Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i) ? true : false;
+          },
+          any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+          }
+        };
+        if( isMobile.any() )
+        {
+          $('body').removeClass('page-sidebar-closed');
+        }
+      });
+      $(document).ajaxError(function(event, request) {
+        if(request.responseJSON && request.responseJSON.message) {
+          alert(request.responseJSON.message);
+        }
+      });
+    </script>
+  </body>
+</html>

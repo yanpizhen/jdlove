@@ -1,0 +1,48 @@
+<% unless params[:map] == '1' %>
+  <div class="footer own-container-fluid <%= 'footer-detail' if /^(\/offers\/)\d+$/.match(url_for) %>">
+    <div class="link-area">
+      <a href="/about" class="sr-about" id="about">关于我们</a>
+      <a href="/media" class="sr-media" id="media">媒体报道</a>
+      <a href="/job" class="sr-job" id="job">加入我们</a>
+      <a href="/contact" class="sr-contact" id="contact">联系我们</a>
+      <a href="/qa" class="sr-question" id="qa">常见问题</a>
+    </div>
+    <hr>
+    <div class="QR-code">
+      <span class="ios sr-ios">
+        <span class="download-qr-code">
+          <img src="<%= asset_path("web/footer/download_qr_code.jpg") %>" alt="下载二维码">
+          <span class="icon-sort-down"></span>
+        </span>
+      </span>
+      <span class="android sr-android">
+        <span class="download-qr-code">
+          <img src="<%= asset_path("web/footer/download_qr_code.jpg") %>" alt="下载二维码">
+          <span class="icon-sort-down"></span>
+        </span>
+      </span>
+      <span class="wechat">
+        <span class="wechat-qr-code">
+          <img src="<%= asset_path("web/footer/weixin_qr.jpg") %>" alt="下载二维码">
+          <span class="icon-sort-down"></span>
+        </span>
+      </span>
+      <a href="http://weibo.com/chillinnzhubaijia" class="weibo sr-weibo" target="_blank"></a>
+    </div>
+    <button class="white-hollow-btn small-btn sr-footer-online" onClick="NTKF.im_openInPageChat()">在线咨询</button>
+    <p class="customer-service">24小时客服电话&nbsp;&nbsp;&nbsp;400-901-9896</p>
+    <p class="info">Copyright © 2012-2016 zhubaijia.com 住百家，版权所有 不得转载 All Rights Reserved. <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">粤ICP备12053354号</a></p>
+    <div class="img-area">
+      <a href="http://szcert.ebs.org.cn/512c6e1f-0983-408c-9b28-d00db8b4b5b3" target="_blank" rel="nofollow"><img src="<%= asset_path("web/footer/ebs_gov.jpg") %>" alt="深圳市市场监督管理局企业主体身份公示"></a>
+      <a href="https://cert.ebs.org.cn/512c6e1f-0983-408c-9b28-d00db8b4b5b3.html" target="_blank" rel="nofollow"><img src="<%= asset_path("web/footer/ebs.jpg") %>" alt="众信验证"></a>
+      <a href="http://pinggu.zx110.org/review_url_zhubaijia.com" target="_blank" rel="nofollow"><img src="<%= asset_path("web/footer/utn.jpg") %>" alt="可信评估"></a>
+    </div>
+  </div>
+<% end %>
+<script>
+  ZBJ.Layout.FooterToolsets.init()
+</script>
+
+<% if Rails.env.production? %>
+  <%= render partial: 'shared/ntalker' %>
+<% end %>

@@ -1,0 +1,102 @@
+<div class="side-bar" id="side-bar">
+  <ul>
+    <li class="cus-service" onclick="NTKF.im_openInPageChat()">
+      <span class="icon"></span>
+      <div class="prompt">
+        <em class="sr-cus-service">在线客服</em>
+      </div>
+    </li>
+
+    <li class="phone">
+      <span class="icon sr-qrcode-phone"></span>
+      <div class="prompt">
+        <p>扫描下载手机客户端</p>
+        <img class="code" src="<%= asset_path("web/lands/download_qr_code.jpg") %>" />
+        <p>下载即送¥50优惠卷</p>
+      </div>
+    </li>
+
+    <li class="wechat">
+      <span class="icon sr-qrcode-wechat"></span>
+      <div class="prompt">
+        <p>关注“住百家”公众号</p>
+        <img class="code" src="<%= asset_path("web/lands/weixin_qr.jpg") %>" />
+        <p>精选住宿及时推送</p>
+      </div>
+    </li>
+
+    <li class="opinion">
+      <span class="icon"></span>
+      <div class="prompt">
+        <em class="sr-opinion-prompt">意见反馈</em>
+      </div>
+    </li>
+
+    <li class="to-top" id="backtop">
+      <span class="icon sr-to-top"></span>
+    </li>
+  </ul>
+
+  <!--建议输入框-->
+  <div class="prompt-opinion">
+    <img src="<%= asset_path("web/lands/chanpin_head.png") %>" />
+    <%= simple_form_for(Feedback.new, url: feedbacks_path, method: :post, remote: true) do |f| %>
+      <%= f.text_area :content, required: true, maxlength: 200, data: { 'parsley-required-message': '请填写意见或建议', 'parsley-errors-container': '#areaTip'}, placeholder: "我是住百家产品经理大龙，把你遇到的问题，或是想要的功能告诉我吧（200字以内）" %>
+      <p class="error-tip" id="areaTip"></p>
+      <%= f.email_field :email, required: true, data: { 'parsley-pattern': '/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.[a-z]{2,}$)/', 'parsley-type-message': '抱歉，请输入正确的邮箱格式', 'parsley-maxlength': 40, 'parsley-maxlength-message': '邮箱最多40位', 'parsley-trigger': 'change', 'parsley-required-message': '请填写邮箱', 'parsley-errors-container': '#emailTip' }, placeholder: "留下邮箱方便我们沟通吧" %>
+      <p class="error-tip" id="emailTip"></p>
+      <button type="submit">提交</button>
+    <% end %>
+    <div class="prompt-close"></div>
+  </div>
+
+</div>
+<script>
+$(function(){
+  //判断浏览器是否支持placeholder属性
+  supportPlaceholder = 'placeholder' in document.createElement('input'),
+
+  placeholder=function(input){
+
+    var text = input.attr('placeholder'),
+        defaultValue = input.defaultValue;
+
+    if(!defaultValue){
+      input.val(text).addClass("phcolor");
+    }
+
+    input.focus(function(){
+      if(input.val() == text){
+        $(this).val("");
+      }
+    });
+
+    input.blur(function(){
+      if(input.val() == ""){
+        $(this).val(text).addClass("phcolor");
+      }
+    });
+
+    //输入的字符不为灰色
+    input.keydown(function(){
+      $(this).removeClass("phcolor");
+    });
+
+  };
+
+  //当浏览器不支持placeholder属性时，调用placeholder函数
+  if(!supportPlaceholder){
+    $('.prompt-opinion input, .prompt-opinion textarea').each(function(){
+      text = $(this).attr("placeholder");
+      placeholder($(this));
+    });
+  }
+
+  //客服窗口
+  $('.cus-service').click(function(){
+    var talkPop = $('.ntalk-window-containter');
+    talkPop.css({bottom: '0px', left: 'auto', right: '44px', top: 'auto'})
+  })
+
+});
+</script>

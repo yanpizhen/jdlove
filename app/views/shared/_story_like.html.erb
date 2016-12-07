@@ -1,0 +1,7 @@
+<% if user_signed_in? && current_user.voted_up_on?(story) %>
+  <%= link_to "javascript:;", class: 'icon_heart zan active', title: '已赞', id: "story-like-#{story.id}" do %>
+  <% end %>
+<% else %>
+  <%= link_to customer_story_likes_path(story, from: "home"), remote: true, method: :post, class: "icon_heart zan", title: '赞', id: "story-like-#{story.id}" do %>
+  <% end %>
+<% end %>

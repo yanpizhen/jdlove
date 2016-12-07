@@ -1,0 +1,6 @@
+<div class="num linkList sr-input-guest">
+  <a class="sr-input-guest" data-value="0" href="javascript:;">不限</a>
+  <% ZBJ::GUEST_ENTRIES.each do |count, display| %>
+    <%= link_to display, 'javascript:;', class: 'sr-input-guest', data: {value: count} %>
+  <% end %>
+</div>

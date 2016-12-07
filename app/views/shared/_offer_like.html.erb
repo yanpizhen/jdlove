@@ -1,0 +1,5 @@
+<%= link_to_if(user_signed_in? && current_user.voted_up_on?(offer), '', unlike_customer_offer_likes_path(offer), remote: true, method: :post, data: {confirm: "取消收藏此房源？"}, class: 'collection-icon had-collected favourite-activated gtm-offer-unlike sr-offer-unlike sr-offer-all', title: '已收藏', id: "offer-like-#{offer.id}") do
+
+  link_to('', customer_offer_likes_path(offer), remote: true, method: :post, class: "collection-icon fav-link favourite-normal gtm-offer-like sr-offer-like sr-nearby-like", title: '收藏', id: "offer-like-#{offer.id}")
+
+end %>

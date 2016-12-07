@@ -1,0 +1,533 @@
+<!-- BEGIN CONTAINER -->
+<div class="page-sidebar-wrapper">
+  <div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
+    <ul class="page-sidebar-menu page-sidebar-menu-closed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+      <li class="start <%= active_cpanel_class_name_for('home') %>">
+        <%= link_to cpanel_root_path do %>
+            <i class="icon-speedometer"></i><span class="title">Dashboard</span>
+        <% end %>
+      </li>
+      <% if current_admin.has_resources?('sidebar_order') %>
+          <li class="<%= active_cpanel_class_name_for('hotels', 'bookings', 'cbookings', 'airtickets') %>">
+            <a href="javascript:;">
+              <i class="icon-basket"></i>
+              <span class="title">订单</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_bookings') %>
+                  <li class="<%= active_cpanel_class_name_for('bookings') %>">
+                    <%= link_to cpanel_bookings_path do %>
+                        支付前
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_cbookings') %>
+                  <li class="<%= active_cpanel_class_name_for('cbookings') %>">
+                    <%= link_to cpanel_cbookings_path do %>
+                        支付后
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_airtickets') %>
+                  <li class="<%= active_cpanel_class_name_for('airtickets') %>">
+                    <%= link_to cpanel_airtickets_path do %>
+                        机票/火车票
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_hotels') %>
+                  <li class="<%= active_cpanel_class_name_for('hotels') %>">
+                    <%= link_to cpanel_hotels_path do %>
+                        酒店
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_service_charges') %>
+                  <li class="<%= active_cpanel_class_name_for('service_charges') %>">
+                    <%= link_to cpanel_service_charges_path do %>
+                        单项服务费
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_bestellungens') %>
+                  <li class="<%= active_cpanel_class_name_for('bestellungens') %>">
+                    <%= link_to cpanel_bestellungens_path do %>
+                        端午包房(机+酒)
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_consultation') %>
+          <li class="<%= active_cpanel_class_name_for('consultations') %>">
+            <a href="javascript:;">
+              <i class="icon-paper-plane"></i>
+              <span class="title">咨询</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_consultations') %>
+                  <li class="<%= active_cpanel_class_name_for('consultations') %>">
+                    <%= link_to cpanel_consultations_path do %>
+                        咨询信息
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_offer') %>
+          <li class="<%= active_cpanel_class_name_for('offers', 'offer_destinations', 'offer_reviews') %>">
+            <a href="javascript:;">
+              <i class="icon-rocket"></i>
+              <span class="title">房源</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_offers') %>
+                  <li class="<%= active_cpanel_class_name_for('offers') %>">
+                    <%= link_to cpanel_offers_path do %>
+                        房源信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_offer_owner_informations') %>
+                  <li class="<%= active_cpanel_class_name_for('offer_owner_informations') %>">
+                    <%= link_to cpanel_offer_owner_informations_path do %>
+                        房东联系信息与收款帐号管理
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_offer_destinations') %>
+                  <li class="<%= active_cpanel_class_name_for('offer_destinations') %>">
+                    <%= link_to cpanel_offer_destinations_path do %>
+                        城市信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_countries') %>
+                  <li class="<%= active_cpanel_class_name_for('countries') %>">
+                    <%= link_to cpanel_countries_path do %>
+                        国家信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_offer_reviews') %>
+                  <li class="<%= active_cpanel_class_name_for('offer_reviews') %>">
+                    <%= link_to cpanel_offer_reviews_path do %>
+                        评论管理
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_offer_search_records') %>
+                  <li class="<%= active_cpanel_class_name_for('offer_search_records') %>">
+                    <%= link_to cpanel_offer_search_records_path do %>
+                        房源搜集记录
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_markets') %>
+                  <li class="<%= active_cpanel_class_name_for('markets') %>">
+                    <%= link_to cpanel_markets_path do %>
+                        市场定义管理
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+      <% if current_admin.has_resources?('sidebar_customer') %>
+          <li class="<%= active_cpanel_class_name_for('specials', 'owners', 'users', 'insurances', 'feedbacks', 'coupons', 'blacklists') %>">
+            <a href="javascript:;">
+              <i class="icon-diamond"></i>
+              <span class="title">客户</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_specials') %>
+                  <li class="<%= active_cpanel_class_name_for('specials') %>">
+                    <%= link_to cpanel_specials_path do %>
+                        私人定制
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_users') %>
+                  <li class="<%= active_cpanel_class_name_for('users') %>">
+                    <%= link_to cpanel_users_path do %>
+                        用户管理
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_insurances') %>
+                  <li class="<%= active_cpanel_class_name_for('insurances') %>">
+                    <%= link_to cpanel_insurances_path do %>
+                        保单信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_feedbacks') %>
+                  <li class="<%= active_cpanel_class_name_for('feedbacks') %>">
+                    <%= link_to cpanel_feedbacks_path do %>
+                        反馈信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_coupons') %>
+                  <li class="<%= active_cpanel_class_name_for('coupons') %>">
+                    <%= link_to cpanel_coupons_path do %>
+                        优惠券
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_blacklists') %>
+                  <li class="<%= active_cpanel_class_name_for('blacklists') %>">
+                    <%= link_to cpanel_blacklists_path do %>
+                        黑名单
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_complains') %>
+                  <li class="<%= active_cpanel_class_name_for('complains') %>">
+                    <%= link_to cpanel_complains_path do %>
+                        投诉管理
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+      <% if current_admin.has_resources?('sidebar_master') %>
+          <li class="<%= active_cpanel_class_name_for('master_applies', 'masters', 'master_comments') %>">
+            <a href="javascript:;">
+              <i class="icon-badge"></i>
+              <span class="title">达人</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_master_applies') %>
+                  <li class="<%= active_cpanel_class_name_for('master_applies') %>">
+                    <%= link_to cpanel_tm_master_applies_path do %>
+                        达人申请
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_masters') %>
+                  <li class="<%= active_cpanel_class_name_for('masters') %>">
+                    <%= link_to cpanel_tm_masters_path do %>
+                        达人信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_master_comments') %>
+                  <li class="<%= active_cpanel_class_name_for('master_comments') %>">
+                    <%= link_to cpanel_tm_master_comments_path do %>
+                        达人备注
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_journey') %>
+          <li class="<%= active_cpanel_class_name_for('journey', 'destinations', 'journey_images') %>">
+            <a href="javascript:;">
+              <i class="icon-pointer"></i>
+              <span class="title">足迹</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_destinations') %>
+                  <li class="<%= active_cpanel_class_name_for('destinations') %>">
+                    <%= link_to cpanel_destinations_path do %>
+                        地区信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_journey_images') %>
+                  <li class="<%= active_cpanel_class_name_for('journey_images') %>">
+                    <%= link_to cpanel_journey_images_path do %>
+                        足迹图片信息
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_stat') %>
+          <li class="<%= active_cpanel_class_name_for('stats') %>">
+            <a href="javascript:;">
+              <i class="icon-bar-chart"></i>
+              <span class="title">统计</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_stats') %>
+                  <li class="<%= active_cpanel_class_name_for('stats') %>">
+                    <%= link_to promotion_cpanel_stats_path do %>
+                        推广
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to receipt_expenditure_cpanel_stats_path do %>
+                        收付款
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+      <% if current_admin.has_resources?('sidebar_qa') %>
+          <li class="<%= active_cpanel_class_name_for('stats', 'questions', 'selected_questions', 'hot_questions', 'search_hot_words', 'suggest_answers') %>">
+            <a href="javascript:;">
+              <i class="icon-question"></i>
+              <span class="title">问答</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_questions') %>
+                  <li class="<%= active_cpanel_class_name_for('questions') %>">
+                    <%= link_to cpanel_questions_path do %>
+                        问答信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_selected_questions') %>
+                  <li class="<%= active_cpanel_class_name_for('selected_questions') %>">
+                    <%= link_to cpanel_selected_questions_path do %>
+                        精选问题
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_suggest_answers') %>
+                  <li class="<%= active_cpanel_class_name_for('suggest_answers') %>">
+                    <%= link_to cpanel_suggest_answers_path do %>
+                        热门回答
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_search_hot_words') %>
+                  <li class="<%= active_cpanel_class_name_for('search_hot_words') %>">
+                    <%= link_to cpanel_search_hot_words_path do %>
+                        搜索热词
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_ed') %>
+          <li class="<%= active_cpanel_class_name_for('topics', 'ed_app_ads', 'ed_app_push_tasks', 'ed_app_hot_offers', 'ed_app_hot_cities', 'ed_app_landmarks', 'ed_search_panels', 'ed_country_landing_pages', 'ed_app_offer_panorams') %>">
+            <a href="javascript:;">
+              <i class="icon-pencil"></i>
+              <span class="title">运营</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_ed_app_splashes') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_app_splashes') %>">
+                    <%= link_to 'App启动页', cpanel_ed_app_splashes_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_topics') %>
+                  <li class="<%= active_cpanel_class_name_for('topics') %>">
+                    <%= link_to '专题', cpanel_topics_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_app_ads') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_app_ads') %>">
+                    <%= link_to '广告', cpanel_ed_app_ads_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_app_push_tasks') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_app_push_tasks') %>">
+                    <%= link_to '推送消息', cpanel_ed_app_push_tasks_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_app_hot_offers') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_app_hot_offers') %>">
+                    <%= link_to '特色房源', cpanel_ed_app_hot_offers_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_app_hot_regions') %>
+                  <li class="
+                    <% active_cpanel_class_name_for('ed_app_hot_regions') %>">
+                    <%= link_to '热点区域', cpanel_ed_app_hot_regions_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_app_landmarks') %>
+                  <li class="
+                    <% active_cpanel_class_name_for('ed_app_landmarks') %>">
+                    <%= link_to '城市地标', cpanel_ed_app_landmarks_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_app_recommended_regions') %>
+                  <li class="
+                    <% active_cpanel_class_name_for('ed_app_recommended_regions') %>">
+                    <%= link_to '推荐民宿', cpanel_ed_app_recommended_regions_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_search_panels') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_search_panels') %>">
+                    <%= link_to '城市搜索面板', cpanel_ed_search_panels_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_pc_hot_cities') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_pc_hot_cities') %>">
+                    <%= link_to '小住推荐', cpanel_ed_pc_hot_cities_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_app_offer_panorams') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_app_offer_panorams') %>">
+                    <%= link_to '房屋全景', cpanel_ed_app_offer_panorams_path %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_ed_offer_offline_notify') %>
+                  <li class="<%= active_cpanel_class_name_for('ed_offer_offline_notify') %>">
+                    <%= link_to '房源下架提醒', ed_offer_offline_notify_edit_cpanel_configuration_items_path %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_lands') %>
+          <li class="<%= active_cpanel_class_name_for('stats') %>">
+            <a href="javascript:;">
+              <i class="glyphicon glyphicon-heart-empty"></i>
+              <span class="title">落地页</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_lp_countries') %>
+                  <li class="<%= active_cpanel_class_name_for('stats') %>">
+                    <%= link_to cpanel_lp_countries_path do %>
+                        国家落地页
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_lpm_countries') %>
+                  <li class="<%= active_cpanel_class_name_for('stats') %>">
+                    <%= link_to cpanel_lpm_countries_path do %>
+                        Wap落地页
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_e') %>
+          <li class="<%= active_cpanel_class_name_for('stats') %>">
+            <a href="javascript:;">
+              <i class="glyphicon glyphicon-bullhorn"></i>
+              <span class="title">活动</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_e_world_cups') %>
+                  <li class="<%= active_cpanel_class_name_for('stats') %>">
+                    <%= link_to cpanel_e_world_cups_path do %>
+                        世界杯
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_release_record') %>
+          <li class="<%= active_cpanel_class_name_for('release_record') %>">
+            <a href="javascript:;">
+              <i class="icon-bell"></i>
+              <span class="title">版本发布</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_release_records') %>
+                  <li class="<%= active_cpanel_class_name_for('release_record') %>">
+                    <%= link_to cpanel_release_records_path do %>
+                        版本发布
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+
+      <% if current_admin.has_resources?('sidebar_tool') %>
+          <li class="last <%= active_cpanel_class_name_for('admins', 'friend_links', 'templates', 'outsides', 'messages', 'accusations', 'suggests') %>">
+            <a href="javascript:;">
+              <i class="icon-settings"></i>
+              <span class="title">工具</span>
+              <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+              <% if current_admin.has_resources?('menu_admins') %>
+                  <li class="<%= active_cpanel_class_name_for('admins') %>">
+                    <%= link_to cpanel_admins_path do %>
+                        内部用户管理
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_roles') %>
+                  <li class="<%= active_cpanel_class_name_for('roles') %>">
+                    <%= link_to cpanel_roles_path do %>
+                        角色管理
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_friend_links') %>
+                  <li class="<%= active_cpanel_class_name_for('friend_links') %>">
+                    <%= link_to cpanel_friend_links_path do %>
+                        友情联接管理
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_templates') %>
+                  <li class="<%= active_cpanel_class_name_for('templates') %>">
+                    <%= link_to cpanel_templates_path do %>
+                        模板管理
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_outsides') %>
+                  <li class="<%= active_cpanel_class_name_for('outsides') %>">
+                    <%= link_to cpanel_outsides_path(flag: 'email') do %>
+                        群发邮件
+                    <% end %>
+                  </li>
+                  <li class="<%= active_cpanel_class_name_for('outsides') %>">
+                    <%= link_to cpanel_outsides_path(flag: 'message') do %>
+                        群发短信
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_accusations') %>
+                  <li class="<%= active_cpanel_class_name_for('accusations') %>">
+                    <%= link_to cpanel_accusations_path do %>
+                        <span class="badge badge-danger"><%= @accusation_alarm_counts %></span>
+                        举报信息
+                    <% end %>
+                  </li>
+              <% end %>
+              <% if current_admin.has_resources?('menu_suggests') %>
+                  <li class="<%= active_cpanel_class_name_for('suggests') %>">
+                    <%= link_to cpanel_suggests_path do %>
+                        推荐
+                    <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+    </ul>
+    <!-- END SIDEBAR MENU -->
+  </div>
+</div>
