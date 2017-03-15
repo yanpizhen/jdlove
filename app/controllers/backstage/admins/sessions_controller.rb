@@ -1,6 +1,10 @@
 class Backstage::Admins::SessionsController < Devise::SessionsController
   layout 'backstage'
   def create
-    super
+
+  end
+
+  def new
+
   end
 end

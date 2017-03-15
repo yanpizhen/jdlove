@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   constraints subdomain: 'backstage' do
     get '/', to: 'backstage/home#index'
 
+    devise_for :admins
+
     scope module: 'backstage', as: 'backstage' do
-      get     'login',  to: 'admins/sessions#new',  as: 'login'
+      get     'login',  to: 'admins/sessions#new'
       post    'login',  to: 'admins/sessions#create'
       delete  'logout', to: 'admins/sessions#destroy'
     end
   end
+
 
   devise_for :users, controllers: {
                      registrations: 'users/registrations',
